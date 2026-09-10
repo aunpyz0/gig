@@ -8,7 +8,6 @@ var _marker: Resource
 func _ready() -> void:
 	_houses = get_tree().get_nodes_in_group(&"drop-off")
 	_marker = preload("res://marker/marker.tscn")
-	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,6 +17,8 @@ func _process(delta: float) -> void:
 		var marker: Node3D = _marker.instantiate()
 		_delivering_house.add_child(marker)
 		marker.delivered.connect(_on_delivered)
+		marker.new_job.connect(%Myphone.new_job)
+		marker.created()
 
 # FIXME: this is temporary
 var _times := 0

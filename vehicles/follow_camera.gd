@@ -4,10 +4,10 @@ extends Camera3D
 const FOV_SPEED_FACTOR = 60
 
 # Higher values cause the field of view to adapt to speed changes faster.
-const FOV_SMOOTH_FACTOR = 0.2
+const FOV_SMOOTH_FACTOR = 0.01
 
 # Don't change FOV if moving below this speed. This prevents shadows from flickering when driving slowly.
-const FOV_CHANGE_MIN_SPEED = 0.05
+const FOV_CHANGE_MIN_SPEED = 0.1
 
 @export var min_distance := 2.0
 @export var max_distance := 4.0

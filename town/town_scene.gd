@@ -48,6 +48,7 @@ func _ready() -> void:
 	car_body.turbo_animator = %TurboAnimator
 	%Speedometer.car_body = car_body
 	%InstancePos.add_child(car)
+	%Myphone.poweron(car_body)
 	
 	# Ensure headlights are toggled on automatically according to the initial mood.
 	# The scene tree is not available at first, so we have to set the mood a second time

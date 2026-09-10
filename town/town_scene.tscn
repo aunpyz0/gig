@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dpgyvcypghjek" path="res://town/tree/scene.gltf" id="3_pxdqy"]
 [ext_resource type="Texture2D" uid="uid://dctnd5sdo5ydj" path="res://town/ui/turbometer.webp" id="8_clgdk"]
 [ext_resource type="Texture2D" uid="uid://hccdo2xu0fl" path="res://town/ui/turbometer_background.webp" id="8_tyv8r"]
+[ext_resource type="PackedScene" uid="uid://dlkkyv836cxvx" path="res://phone/myphone.tscn" id="12_7vfyd"]
 
 [sub_resource type="Sky" id="Sky_1gf0c"]
 sky_material = ExtResource("2_1df3w")
@@ -347,6 +348,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8510952, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.774849, 0)
 shape = SubResource("CapsuleShape3D_pxdqy")
 
+[node name="Myphone" parent="." unique_id=1695972050 instance=ExtResource("12_7vfyd")]
+unique_name_in_owner = true
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+
 [node name="GameUI" type="VBoxContainer" parent="." unique_id=870721625]
 offset_left = 24.0
 offset_top = 24.0
@@ -401,6 +410,7 @@ C - Cycle camera
 M - Cycle mood"
 
 [node name="CarUI" type="HBoxContainer" parent="." unique_id=883662698]
+visible = false
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -464,6 +474,7 @@ script = ExtResource("2")
 tint_gradient = SubResource("Gradient_nng2a")
 
 [node name="TouchTurnLeft" type="Control" parent="." unique_id=325944973]
+visible = false
 layout_mode = 3
 anchors_preset = 4
 anchor_top = 0.5
@@ -481,6 +492,7 @@ action = "turn_left"
 visibility_mode = 1
 
 [node name="TouchReverse" type="Control" parent="." unique_id=155125709]
+visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -501,6 +513,7 @@ action = "reverse"
 visibility_mode = 1
 
 [node name="TouchTurnRight" type="Control" parent="." unique_id=1012524599]
+visible = false
 layout_mode = 3
 anchors_preset = 6
 anchor_left = 1.0

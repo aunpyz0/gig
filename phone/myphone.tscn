@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dlkkyv836cxvx"]
+
+[ext_resource type="Texture2D" uid="uid://brc6tmifrruc4" path="res://phone/myphone-17-plus-ultra.png" id="1_75hpb"]
+[ext_resource type="Script" uid="uid://bow8inaeiyf33" path="res://phone/myphone.gd" id="1_bf2e3"]
+[ext_resource type="Texture2D" uid="uid://cnq4b834i4oed" path="res://phone/compass.png" id="2_bf2e3"]
+
+[node name="Myphone" type="Control" unique_id=1695972050]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bf2e3")
+
+[node name="Myphone17PlusUltra" type="Sprite2D" parent="." unique_id=1311456766]
+position = Vector2(306.5, 871.5)
+texture = ExtResource("1_75hpb")
+
+[node name="Compass" type="Sprite2D" parent="." unique_id=743019116]
+unique_name_in_owner = true
+position = Vector2(236, 786)
+texture = ExtResource("2_bf2e3")
