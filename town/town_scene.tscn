@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://di7cre4unhk3f" path="res://town/town_scene.gd" id="1_gxe8p"]
 [ext_resource type="Script" uid="uid://i2wsujhhpwj2" path="res://speedometer.gd" id="2"]
 [ext_resource type="Material" uid="uid://boboc4pk5t03s" path="res://town/sky_day.tres" id="2_1df3w"]
+[ext_resource type="Script" uid="uid://dj62ndmuwadxb" path="res://town/world.gd" id="2_pvdab"]
 [ext_resource type="Material" uid="uid://dwj22a5ckgpms" path="res://town/materials/grass.tres" id="2_ubld8"]
 [ext_resource type="Material" uid="uid://bhrhj1ylqw2tp" path="res://town/materials/cement.tres" id="3_8s61a"]
 [ext_resource type="PackedScene" uid="uid://cf2bmynxs522" path="res://town/lamp/lamp_scene.tscn" id="3_clgdk"]
@@ -194,6 +195,9 @@ height = 128
 [node name="TownScene" type="Node3D" unique_id=1990567779]
 script = ExtResource("1_gxe8p")
 
+[node name="World" type="Node3D" parent="." unique_id=862260706]
+script = ExtResource("2_pvdab")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=710399183]
 unique_name_in_owner = true
 environment = SubResource("Environment_dauhq")
@@ -264,31 +268,31 @@ surface_material_override/0 = ExtResource("3_8s61a")
 [node name="Anchor" type="Node3D" parent="TownModel/Houses/House01" parent_id_path=PackedInt32Array(1541596250, 81530940) index="2" unique_id=1060514718 groups=["drop-off"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0019493103, 6.192268)
 
-[node name="Node3D" type="Node3D" parent="TownModel/Houses/House02" parent_id_path=PackedInt32Array(1541596250, 86929560) index="2" unique_id=1001463447 groups=["drop-off"]]
+[node name="Anchor" type="Node3D" parent="TownModel/Houses/House02" parent_id_path=PackedInt32Array(1541596250, 86929560) index="2" unique_id=1001463447 groups=["drop-off"]]
 transform = Transform3D(1, 0, 1.1641532e-10, 0, 1, 0, -1.1641532e-10, 0, 1, -0.49143982, 0.016407967, 5.827652)
 
-[node name="Node3D" type="Node3D" parent="TownModel/Houses/House03" parent_id_path=PackedInt32Array(1541596250, 889098977) index="2" unique_id=2093672160 groups=["drop-off"]]
+[node name="Anchor" type="Node3D" parent="TownModel/Houses/House03" parent_id_path=PackedInt32Array(1541596250, 889098977) index="2" unique_id=2093672160 groups=["drop-off"]]
 transform = Transform3D(0.99999994, 0, -5.684342e-14, 0, 1, 0, 5.684342e-14, 0, 0.99999994, 1.507597, 0.01785469, -2.0550346)
 
-[node name="Node3D" type="Node3D" parent="TownModel/Houses/House04" parent_id_path=PackedInt32Array(1541596250, 1499915773) index="2" unique_id=1021242346 groups=["drop-off"]]
+[node name="Anchor" type="Node3D" parent="TownModel/Houses/House04" parent_id_path=PackedInt32Array(1541596250, 1499915773) index="2" unique_id=1021242346 groups=["drop-off"]]
 transform = Transform3D(1.0000001, 0, 9.313226e-10, 0, 1, 0, -9.313226e-10, 0, 1.0000001, 0, 0.00054359436, -3.2544746)
 
-[node name="Node3D" type="Node3D" parent="TownModel/Houses/House05" parent_id_path=PackedInt32Array(1541596250, 1589529979) index="2" unique_id=1131178362 groups=["drop-off"]]
+[node name="Anchor" type="Node3D" parent="TownModel/Houses/House05" parent_id_path=PackedInt32Array(1541596250, 1589529979) index="2" unique_id=1131178362 groups=["drop-off"]]
 transform = Transform3D(1, 0, 1.1641532e-10, 0, 1, 0, -1.1641532e-10, 0, 1, -1.873291, 0.013899803, 6.347494)
 
-[node name="Node3D" type="Node3D" parent="TownModel/Houses/House06" parent_id_path=PackedInt32Array(1541596250, 1435879501) index="2" unique_id=1464006084 groups=["drop-off"]]
+[node name="Anchor" type="Node3D" parent="TownModel/Houses/House06" parent_id_path=PackedInt32Array(1541596250, 1435879501) index="2" unique_id=1464006084 groups=["drop-off"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4229984, 0.025710106, -2.0901203)
 
-[node name="Node3D" type="Node3D" parent="TownModel/Houses/House07" parent_id_path=PackedInt32Array(1541596250, 460520977) index="2" unique_id=1579967451 groups=["drop-off"]]
+[node name="Anchor" type="Node3D" parent="TownModel/Houses/House07" parent_id_path=PackedInt32Array(1541596250, 460520977) index="2" unique_id=1579967451 groups=["drop-off"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.536743e-07, 0.0069303513, -3.248149)
 
-[node name="Node3D" type="Node3D" parent="TownModel/Houses/House08" parent_id_path=PackedInt32Array(1541596250, 110738876) index="2" unique_id=468706190 groups=["drop-off"]]
+[node name="Anchor" type="Node3D" parent="TownModel/Houses/House08" parent_id_path=PackedInt32Array(1541596250, 110738876) index="2" unique_id=468706190 groups=["drop-off"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9456387, 0.026649952, 6.9275994)
 
-[node name="Node3D" type="Node3D" parent="TownModel/Houses/House09" parent_id_path=PackedInt32Array(1541596250, 279891402) index="2" unique_id=1210723750 groups=["drop-off"]]
+[node name="Anchor" type="Node3D" parent="TownModel/Houses/House09" parent_id_path=PackedInt32Array(1541596250, 279891402) index="2" unique_id=1210723750 groups=["drop-off"]]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0.66499424, -0.029707909, -1.6949577)
 
-[node name="Node3D" type="Node3D" parent="TownModel/Houses/House10" parent_id_path=PackedInt32Array(1541596250, 1140875156) index="2" unique_id=1422013234 groups=["drop-off"]]
+[node name="Anchor" type="Node3D" parent="TownModel/Houses/House10" parent_id_path=PackedInt32Array(1541596250, 1140875156) index="2" unique_id=1422013234 groups=["drop-off"]]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0.62545776, 0.011172295, -1.5789375)
 
 [node name="Trees" type="Node3D" parent="TownModel" unique_id=637052945]

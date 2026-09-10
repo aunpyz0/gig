@@ -70,15 +70,29 @@ func _physics_process(_delta: float) -> void:
 		# Force rotation to prevent camera from being slanted after switching cameras while on a slope.
 		rotation_degrees = Vector3(270, 180, 0)
 	elif camera_type == CameraType.ISOMETRIC:
-		# TODO: should be detached from this Node and calculate new pos every frame
-		pass
+		var target: Vector3 = get_parent().global_transform.origin
+		var pos := global_transform.origin
+
+		var from_target := pos - target
+
+		# Check ranges.
+		if from_target.length() < min_distance:
+			from_target = from_target.normalized() * min_distance
+		elif from_target.length() > max_distance:
+			from_target = from_target.normalized() * max_distance
+
+		from_target.y = height
+
+		pos = target + from_target
+
+		look_at_from_position(pos, target, Vector3.UP)
 
 	# Dynamic field of view based on car speed, with smoothing to prevent sudden changes on impact.
 	desired_fov = clamp(base_fov + (abs(global_position.length() - previous_position.length()) - FOV_CHANGE_MIN_SPEED) * FOV_SPEED_FACTOR, base_fov, 100)
 	fov = lerpf(fov, desired_fov, FOV_SMOOTH_FACTOR)
 
 	# Turn a little up or down.
-	transform.basis = Basis(transform.basis[0], deg_to_rad(angle_v_adjust)) * transform.basis
+	#transform.basis = Basis(transform.basis[0], deg_to_rad(angle_v_adjust)) * transform.basis
 
 	previous_position = global_position
 
@@ -97,7 +111,7 @@ func update_camera() -> void:
 	# This detaches the camera transform from the parent spatial node, but only
 	# for exterior and top-down cameras.
 	# TODO: should includes ISOMETRIC camera
-	var should_attach_camera = camera_type == CameraType.INTERIOR || camera_type == CameraType.ISOMETRIC
+	var should_attach_camera: bool = camera_type == CameraType.INTERIOR
 	set_as_top_level(!should_attach_camera)
 
 	# The camera transition is meant to be instant, so make sure physics interpolation

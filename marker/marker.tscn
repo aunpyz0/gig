@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cbca3v8afiwmv"]
+
+[ext_resource type="Script" uid="uid://dk5chndtdujgn" path="res://marker/marker.gd" id="1_wjjm6"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_w440k"]
+height = 1.0
+
+[node name="Marker" type="Node3D" unique_id=1124532683]
+script = ExtResource("1_wjjm6")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=1339351440]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+height = 1.0
+
+[node name="Area3D" type="Area3D" parent="." unique_id=854358286]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1873528657]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_w440k")
+
+[connection signal="body_shape_entered" from="Area3D" to="." method="_on_area_3d_body_shape_entered"]
