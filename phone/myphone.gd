@@ -18,16 +18,9 @@ func _process(delta: float) -> void:
 		_update_compass(delta)
 
 func _update_compass(delta: float) -> void:
-	#var dir_3d := _target.global_position
-	
-	
-	#compass.rotation = Vector2(dir_3d.x, dir_3d.z).angle() / -2
-	#compass.global_rotation = lerp_angle(compass.rotation, Vector2(dir_3d.x, dir_3d.z).angle(), delta * 1.0)
-	var dir_3d := _target.global_position - _owner.global_position
-	var dir_2d := Vector2(dir_3d.x, -dir_3d.z)
-	var target_angle := dir_2d.angle() - _owner.global_rotation.y
-	compass.rotation = lerp_angle(compass.rotation, dir_2d.angle(), delta * 1.0)
-	print("owner pos: ", _owner.global_position, " owner rot: ", _owner.global_rotation)
+	var target_dir := _target.global_position - _owner.global_position
+	var owner_forward := _owner.global_transform.basis.z
+	compass.rotation = lerp_angle(compass.rotation, Vector2(owner_forward.x, owner_forward.z).angle_to(Vector2(target_dir.x, target_dir.z)), delta * 1.0)
 
 func poweron(owner: Node3D) -> void:
 	_owner = owner
