@@ -12,3 +12,6 @@ size = Vector3(6.4434814, 9.250488, 9.497009)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1582707132]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0044555664, 4.612549, 0.0043029785)
 shape = SubResource("BoxShape3D_37rd0")
+
+[node name="Pickup" type="Node3D" parent="." index="2" unique_id=2079177350 groups=["pick-up"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.76532)

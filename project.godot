@@ -38,6 +38,8 @@ project/assembly_name="GrabSimulator2000"
 headlight=""
 car=""
 drop-off=""
+pick-up=""
+refuel=""
 
 [input]
 

@@ -19,3 +19,6 @@ shape = SubResource("BoxShape3D_37rd0")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1" unique_id=1292904772]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.007282257, 2.3736572, 2.9658775)
 shape = SubResource("BoxShape3D_0hf0g")
+
+[node name="Pickup" type="Node3D" parent="." index="2" unique_id=442013837 groups=["pick-up"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.2280273)
