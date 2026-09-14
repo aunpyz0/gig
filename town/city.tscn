@@ -60,8 +60,14 @@ mesh = SubResource("BoxMesh_37rd0")
 [node name="Hotel_v1" parent="Buildings/Houses" unique_id=1307810706 groups=["houses"] instance=ExtResource("7_c76l0")]
 transform = Transform3D(-0.66916984, 0, -0.74310946, 0, 1, 0, 0.74310946, 0, -0.66916984, -40.59424, 0, 35.144287)
 
+[node name="Dropoff" type="Node3D" parent="Buildings/Houses/Hotel_v1" unique_id=524589684 groups=["drop-off"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.9464192)
+
 [node name="Apartment_v1" parent="Buildings/Houses" unique_id=973859537 groups=["houses"] instance=ExtResource("2_ueojo")]
-transform = Transform3D(0.99727726, 0, -0.07374324, 0, 1, 0, 0.07374324, 0, 0.99727726, -18.945204, 0.24195355, 16.786526)
+transform = Transform3D(0.99727726, 0, -0.07374324, 0, 1, 0, 0.07374324, 0, 0.99727726, -18.883196, 0.24195355, 15.947959)
+
+[node name="Dropoff" type="Node3D" parent="Buildings/Houses/Apartment_v1" unique_id=462007099 groups=["drop-off"]]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -3.073364e-08, 0, 6.5479093)
 
 [node name="Shops" type="Node3D" parent="Buildings" unique_id=2026962371]
 
