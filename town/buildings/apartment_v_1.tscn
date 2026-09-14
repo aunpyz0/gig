@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://kk12iesvdbx1"]
+
+[ext_resource type="PackedScene" uid="uid://d1nm4pfoif6ct" path="res://town/buildings/models/Apartment_v1.fbx" id="1_2vc3h"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_37rd0"]
+size = Vector3(14.417236, 8.953796, 7.218628)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6mxs4"]
+size = Vector3(6.0185547, 8.959473, 2.062622)
+
+[node name="Apartment_v1" unique_id=973859537 instance=ExtResource("1_2vc3h")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1809925736]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=169504953]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00012207031, 4.233246, -0.00982666)
+shape = SubResource("BoxShape3D_37rd0")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1" unique_id=521866920]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.007446289, 4.2373962, 4.517456)
+shape = SubResource("BoxShape3D_6mxs4")

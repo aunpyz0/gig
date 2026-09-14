@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://2vd48ub33yuj"]
+
+[ext_resource type="PackedScene" uid="uid://lalo5awugpdh" path="res://town/buildings/models/Hotel_v1.fbx" id="1_ldboh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_37rd0"]
+size = Vector3(5.027954, 9.018799, 5.675354)
+
+[node name="Hotel_v1" unique_id=1307810706 instance=ExtResource("1_ldboh")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=931375797]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1710432186]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0051879883, 4.494816, 0.15170288)
+shape = SubResource("BoxShape3D_37rd0")

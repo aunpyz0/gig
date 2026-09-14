@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://b3tbjn88tb7gy"]
+
+[ext_resource type="PackedScene" uid="uid://bnhvl26h2fedb" path="res://town/buildings/models/CoffeeShop_v2.fbx" id="1_bilsl"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_37rd0"]
+points = PackedVector3Array(1.04, 0, 4.755, -5.455, 0, 4.55, 5.81, 0, -0.31, 5.73, 0, -7.005, -5.57, 0, -7.135, 1.04, 4.015, 4.755, -5.45, 4.015, 4.55, 5.81, 4.015, -0.31, 5.73, 4.015, -7, -5.57, 4.015, -7.13)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_37rd0"]
+size = Vector3(5.7967377, 1.1044922, 1.5371094)
+
+[node name="CoffeeShop_v2" unique_id=642214760 instance=ExtResource("1_bilsl")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1037502134]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=517671968]
+shape = SubResource("ConvexPolygonShape3D_37rd0")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1" unique_id=545008447]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.227756, 0.54964745, 5.504036)
+shape = SubResource("BoxShape3D_37rd0")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="2" unique_id=395059927]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.55491, 0.54964745, -3.644722)
+shape = SubResource("BoxShape3D_37rd0")

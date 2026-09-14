@@ -1,16 +1,13 @@
 [gd_scene format=3 uid="uid://dnbdk0yqxr2wy"]
 
-[ext_resource type="PackedScene" uid="uid://dpgfy033dc715" path="res://town/model/town_model.gltf" id="1_amwer"]
 [ext_resource type="Script" uid="uid://di7cre4unhk3f" path="res://town/town_scene.gd" id="1_gxe8p"]
 [ext_resource type="Script" uid="uid://i2wsujhhpwj2" path="res://speedometer.gd" id="2"]
 [ext_resource type="Material" uid="uid://boboc4pk5t03s" path="res://town/sky_day.tres" id="2_1df3w"]
 [ext_resource type="Script" uid="uid://dj62ndmuwadxb" path="res://town/world.gd" id="2_pvdab"]
-[ext_resource type="Material" uid="uid://dwj22a5ckgpms" path="res://town/materials/grass.tres" id="2_ubld8"]
-[ext_resource type="Material" uid="uid://bhrhj1ylqw2tp" path="res://town/materials/cement.tres" id="3_8s61a"]
 [ext_resource type="PackedScene" uid="uid://cf2bmynxs522" path="res://town/lamp/lamp_scene.tscn" id="3_clgdk"]
-[ext_resource type="PackedScene" uid="uid://dpgyvcypghjek" path="res://town/tree/scene.gltf" id="3_pxdqy"]
 [ext_resource type="Texture2D" uid="uid://dctnd5sdo5ydj" path="res://town/ui/turbometer.webp" id="8_clgdk"]
 [ext_resource type="Texture2D" uid="uid://hccdo2xu0fl" path="res://town/ui/turbometer_background.webp" id="8_tyv8r"]
+[ext_resource type="PackedScene" uid="uid://i7wycg74hkxw" path="res://town/city.tscn" id="9_tyv8r"]
 [ext_resource type="PackedScene" uid="uid://dlkkyv836cxvx" path="res://phone/myphone.tscn" id="12_7vfyd"]
 
 [sub_resource type="Sky" id="Sky_1gf0c"]
@@ -26,9 +23,6 @@ fog_enabled = true
 fog_light_color = Color(0.7254902, 0.91764706, 1, 1)
 fog_density = 0.0015
 fog_sky_affect = 0.0
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pxdqy"]
-height = 7.2680664
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_w44mb"]
 content_margin_top = 0.0
@@ -217,6 +211,7 @@ directional_shadow_mode = 0
 directional_shadow_max_distance = 80.0
 
 [node name="Lamps" type="Node3D" parent="." unique_id=1215593960]
+visible = false
 
 [node name="Lamp" parent="Lamps" unique_id=197257794 instance=ExtResource("3_clgdk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.826617, 10.281145, 21.406624)
@@ -250,103 +245,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.96642, 11.294643, -7.19912
 
 [node name="InstancePos" type="Marker3D" parent="." unique_id=89081834]
 unique_name_in_owner = true
-transform = Transform3D(3.57628e-07, 0, -1, 0, 1, 0, 1, 0, 3.57628e-07, 35.48, 8.72405, 14.335)
-
-[node name="TownModel" parent="." unique_id=1541596250 instance=ExtResource("1_amwer")]
-
-[node name="GrassMesh" parent="TownModel/Terrain" parent_id_path=PackedInt32Array(1541596250, 972474367) index="0" unique_id=105652354]
-surface_material_override/0 = ExtResource("2_ubld8")
-
-[node name="RoadMesh" parent="TownModel/Terrain" parent_id_path=PackedInt32Array(1541596250, 972474367) index="2" unique_id=1298820862]
-surface_material_override/0 = ExtResource("3_8s61a")
-
-[node name="OuterGroundMesh" parent="TownModel/Terrain" parent_id_path=PackedInt32Array(1541596250, 972474367) index="4" unique_id=193590835]
-surface_material_override/0 = ExtResource("2_ubld8")
-
-[node name="RacetrackMesh" parent="TownModel/Racetrack/RacetrackMain" parent_id_path=PackedInt32Array(1541596250, 1403848470) index="0" unique_id=2042811443]
-surface_material_override/0 = ExtResource("3_8s61a")
-
-[node name="Anchor" type="Node3D" parent="TownModel/Houses/House01" parent_id_path=PackedInt32Array(1541596250, 956602795) index="2" unique_id=1060514718 groups=["drop-off"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0019493103, 6.192268)
-
-[node name="Anchor" type="Node3D" parent="TownModel/Houses/House02" parent_id_path=PackedInt32Array(1541596250, 1207821704) index="2" unique_id=1001463447 groups=["drop-off"]]
-transform = Transform3D(1, 0, 1.1641532e-10, 0, 1, 0, -1.1641532e-10, 0, 1, -0.49143982, 0.016407967, 5.827652)
-
-[node name="Anchor" type="Node3D" parent="TownModel/Houses/House03" parent_id_path=PackedInt32Array(1541596250, 911886374) index="2" unique_id=2093672160 groups=["drop-off"]]
-transform = Transform3D(0.99999994, 0, -5.684342e-14, 0, 1, 0, 5.684342e-14, 0, 0.99999994, 1.507597, 0.01785469, -2.0550346)
-
-[node name="Anchor" type="Node3D" parent="TownModel/Houses/House04" parent_id_path=PackedInt32Array(1541596250, 667959499) index="2" unique_id=1021242346 groups=["drop-off"]]
-transform = Transform3D(1.0000001, 0, 9.313226e-10, 0, 1, 0, -9.313226e-10, 0, 1.0000001, 0, 0.00054359436, -3.2544746)
-
-[node name="Anchor" type="Node3D" parent="TownModel/Houses/House05" parent_id_path=PackedInt32Array(1541596250, 2028190414) index="2" unique_id=1131178362 groups=["drop-off"]]
-transform = Transform3D(1, 0, 1.1641532e-10, 0, 1, 0, -1.1641532e-10, 0, 1, -1.873291, 0.013899803, 6.347494)
-
-[node name="Anchor" type="Node3D" parent="TownModel/Houses/House06" parent_id_path=PackedInt32Array(1541596250, 874876015) index="2" unique_id=1464006084 groups=["drop-off"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4229984, 0.025710106, -2.0901203)
-
-[node name="Anchor" type="Node3D" parent="TownModel/Houses/House07" parent_id_path=PackedInt32Array(1541596250, 1152419392) index="2" unique_id=1579967451 groups=["drop-off"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.536743e-07, 0.0069303513, -3.248149)
-
-[node name="Anchor" type="Node3D" parent="TownModel/Houses/House08" parent_id_path=PackedInt32Array(1541596250, 2098467104) index="2" unique_id=468706190 groups=["drop-off"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9456387, 0.026649952, 6.9275994)
-
-[node name="Anchor" type="Node3D" parent="TownModel/Houses/House09" parent_id_path=PackedInt32Array(1541596250, 307638847) index="2" unique_id=1210723750 groups=["drop-off"]]
-transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0.66499424, -0.029707909, -1.6949577)
-
-[node name="Anchor" type="Node3D" parent="TownModel/Houses/House10" parent_id_path=PackedInt32Array(1541596250, 1738068093) index="2" unique_id=1422013234 groups=["drop-off"]]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0.62545776, 0.011172295, -1.5789375)
-
-[node name="Trees" type="Node3D" parent="TownModel" unique_id=637052945]
-
-[node name="Tree" parent="TownModel/Trees" unique_id=1581148790 instance=ExtResource("3_pxdqy")]
-transform = Transform3D(0.375, 0, 0, 0, 0.375, 0, 0, 0, 0.375, 5.548664, 9.214607, 21.853706)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="TownModel/Trees/Tree" unique_id=488670663]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8510952, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TownModel/Trees/Tree/StaticBody3D" unique_id=1571753715]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.774849, 0)
-shape = SubResource("CapsuleShape3D_pxdqy")
-
-[node name="Tree2" parent="TownModel/Trees" unique_id=764955330 instance=ExtResource("3_pxdqy")]
-transform = Transform3D(-0.1781004, 0, 0.27185518, 0, 0.325, 0, -0.27185518, 0, -0.1781004, 22.705954, 8.334187, -12.540859)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="TownModel/Trees/Tree2" unique_id=1391753394]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8510952, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TownModel/Trees/Tree2/StaticBody3D" unique_id=258816822]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.774849, 0)
-shape = SubResource("CapsuleShape3D_pxdqy")
-
-[node name="Tree3" parent="TownModel/Trees" unique_id=2087257218 instance=ExtResource("3_pxdqy")]
-transform = Transform3D(0.10563323, 0, 0.42713186, 0, 0.44, 0, -0.42713186, 0, 0.10563323, 50.709362, 10.075925, -6.032544)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="TownModel/Trees/Tree3" unique_id=138405085]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8510952, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TownModel/Trees/Tree3/StaticBody3D" unique_id=145018392]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.774849, 0)
-shape = SubResource("CapsuleShape3D_pxdqy")
-
-[node name="Tree4" parent="TownModel/Trees" unique_id=660503783 instance=ExtResource("3_pxdqy")]
-transform = Transform3D(0.41906354, 0, 0.13411105, 0, 0.44, 0, -0.13411105, 0, 0.41906354, -12.516531, 12.71288, -15.442337)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="TownModel/Trees/Tree4" unique_id=209875123]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8510952, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TownModel/Trees/Tree4/StaticBody3D" unique_id=985760218]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.774849, 0)
-shape = SubResource("CapsuleShape3D_pxdqy")
-
-[node name="Tree5" parent="TownModel/Trees" unique_id=2122104116 instance=ExtResource("3_pxdqy")]
-transform = Transform3D(0.23812625, 0, -0.17412893, 0, 0.295, 0, 0.17412893, 0, 0.23812625, -20.612381, 3.7711592, 1.7494526)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="TownModel/Trees/Tree5" unique_id=1121566210]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8510952, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TownModel/Trees/Tree5/StaticBody3D" unique_id=359408452]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.774849, 0)
-shape = SubResource("CapsuleShape3D_pxdqy")
+transform = Transform3D(-0.12543574, 0, -0.9921018, 0, 1, 0, 0.9921018, 0, -0.12543574, -42.152637, 0, 27.838842)
 
 [node name="Myphone" parent="." unique_id=1695972050 instance=ExtResource("12_7vfyd")]
 unique_name_in_owner = true
@@ -533,6 +432,6 @@ passby_press = true
 action = "turn_right"
 visibility_mode = 1
 
-[connection signal="pressed" from="CarUI/Speedometer" to="CarUI/Speedometer" method="_on_speedometer_pressed"]
+[node name="City" parent="." unique_id=712654112 instance=ExtResource("9_tyv8r")]
 
-[editable path="TownModel"]
+[connection signal="pressed" from="CarUI/Speedometer" to="CarUI/Speedometer" method="_on_speedometer_pressed"]

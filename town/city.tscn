@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://i7wycg74hkxw"]
+
+[ext_resource type="PackedScene" uid="uid://cp21h56brnfkd" path="res://town/road/Roads_v1.fbx" id="1_x38br"]
+[ext_resource type="PackedScene" uid="uid://kk12iesvdbx1" path="res://town/buildings/apartment_v_1.tscn" id="2_ueojo"]
+[ext_resource type="PackedScene" uid="uid://0dxbx2tkpcgg" path="res://town/buildings/gas_station_v_1.tscn" id="3_571w2"]
+[ext_resource type="PackedScene" uid="uid://c5kk2psve1tc3" path="res://town/buildings/coffee_shop_v_1.tscn" id="3_m1vvb"]
+[ext_resource type="PackedScene" uid="uid://coq7av5uuj7ga" path="res://town/props/bench_v_1.tscn" id="4_5lmj6"]
+[ext_resource type="PackedScene" uid="uid://b3tbjn88tb7gy" path="res://town/buildings/coffee_shop_v_2.tscn" id="4_c1nlu"]
+[ext_resource type="PackedScene" uid="uid://d3kt58hbu1ace" path="res://town/buildings/generic_shop_v_1.tscn" id="6_o347r"]
+[ext_resource type="PackedScene" uid="uid://2vd48ub33yuj" path="res://town/buildings/hotel_v_1.tscn" id="7_c76l0"]
+[ext_resource type="PackedScene" uid="uid://doeu4njmxoifm" path="res://town/buildings/restaurant_v_1.tscn" id="8_6xfuj"]
+[ext_resource type="PackedScene" uid="uid://lykx5e4rg2se" path="res://town/props/traffic_light_v_1.tscn" id="10_rkun3"]
+[ext_resource type="PackedScene" uid="uid://cvtkljwhw2j0n" path="res://town/props/trash_can_v_1.tscn" id="11_0kcuw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_37rd0"]
+size = Vector3(1685.9745, 1.0037842, 1613.594)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6mxs4"]
+size = Vector3(1687.5398, 27.435059, 14.2481575)
+
+[sub_resource type="BoxMesh" id="BoxMesh_37rd0"]
+size = Vector3(1677.1663, 1.0428467, 1613.5906)
+
+[node name="City" type="Node3D" unique_id=712654112]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1863918128]
+
+[node name="Roads" parent="StaticBody3D" unique_id=1736572255 instance=ExtResource("1_x38br")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=419441351]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.005829, -0.50006104, 12.02681)
+shape = SubResource("BoxShape3D_37rd0")
+
+[node name="Walls" type="StaticBody3D" parent="." unique_id=1512119312]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls" unique_id=112677938]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.401886, 12.720947, -799.107)
+shape = SubResource("BoxShape3D_6mxs4")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Walls" unique_id=695727341]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.401886, 12.720947, 823.9063)
+shape = SubResource("BoxShape3D_6mxs4")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Walls" unique_id=740123592]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -852.5716, 0, 9.883523)
+shape = SubResource("BoxShape3D_6mxs4")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Walls" unique_id=794714955]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 836.18195, 0, 9.883596)
+shape = SubResource("BoxShape3D_6mxs4")
+
+[node name="Ground" type="MeshInstance3D" parent="." unique_id=18303914]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.352783, -0.7012329, 13.687408)
+mesh = SubResource("BoxMesh_37rd0")
+
+[node name="Buildings" type="Node3D" parent="." unique_id=1939445849]
+
+[node name="Houses" type="Node3D" parent="Buildings" unique_id=1546733483]
+
+[node name="Hotel_v1" parent="Buildings/Houses" unique_id=1307810706 groups=["houses"] instance=ExtResource("7_c76l0")]
+transform = Transform3D(-0.66916984, 0, -0.74310946, 0, 1, 0, 0.74310946, 0, -0.66916984, -40.59424, 0, 35.144287)
+
+[node name="Apartment_v1" parent="Buildings/Houses" unique_id=973859537 groups=["houses"] instance=ExtResource("2_ueojo")]
+transform = Transform3D(0.99727726, 0, -0.07374324, 0, 1, 0, 0.07374324, 0, 0.99727726, -18.945204, 0.24195355, 16.786526)
+
+[node name="Shops" type="Node3D" parent="Buildings" unique_id=2026962371]
+
+[node name="Restaurant_v1" parent="Buildings/Shops" unique_id=720930305 groups=["shops"] instance=ExtResource("8_6xfuj")]
+transform = Transform3D(0.9844072, 0, -0.17590468, 0, 1, 0, 0.17590468, 0, 0.9844072, -55.9067, 0, 13.572643)
+
+[node name="CoffeeShop_v1" parent="Buildings/Shops" unique_id=799825398 groups=["shops"] instance=ExtResource("3_m1vvb")]
+transform = Transform3D(-0.99813396, 0, 0.06106191, 0, 1, 0, -0.06106191, 0, -0.99813396, -6.744629, 0.20739746, 36.708397)
+
+[node name="CoffeeShop_v2" parent="Buildings/Shops" unique_id=642214760 groups=["shops"] instance=ExtResource("4_c1nlu")]
+transform = Transform3D(-0.1716718, 0, -0.9851542, 0, 1, 0, 0.9851542, 0, -0.1716718, -33.720642, 0, 13.940613)
+
+[node name="GenericShop_v1" parent="Buildings/Shops" unique_id=72260682 groups=["shops"] instance=ExtResource("6_o347r")]
+transform = Transform3D(-0.2187396, 0, -0.97578335, 0, 1, 0, 0.97578335, 0, -0.2187396, -41.310696, 0, 43.77223)
+
+[node name="Refuel" type="Node3D" parent="Buildings" unique_id=156022270]
+
+[node name="GasStation_v1" parent="Buildings/Refuel" unique_id=995981989 groups=["fuel"] instance=ExtResource("3_571w2")]
+transform = Transform3D(-0.21549591, 0, -0.9765048, 0, 1, 0, 0.9765048, 0, -0.21549591, -42.92981, 0, 61.200638)
+
+[node name="Props" type="Node3D" parent="Buildings" unique_id=1739111864]
+
+[node name="Bench_v1" parent="Buildings/Props" unique_id=438506500 instance=ExtResource("4_5lmj6")]
+transform = Transform3D(-0.20482863, 0, -0.97879785, 0, 1, 0, 0.97879785, 0, -0.20482863, -40.605774, 0, 18.097857)
+
+[node name="TrafficLight_v1" parent="Buildings/Props" unique_id=1722731083 instance=ExtResource("10_rkun3")]
+transform = Transform3D(0.28100237, 0, 0.9597071, 0, 1, 0, -0.9597071, 0, 0.28100237, -41.820496, 0.0019531478, 20.642815)
+
+[node name="TrafficLight_v2" parent="Buildings/Props" unique_id=1340427139 instance=ExtResource("10_rkun3")]
+transform = Transform3D(-0.99458957, 0, 0.10388377, 0, 1, 0, -0.10388377, 0, -0.99458957, -51.43457, 0.0019531478, 19.577377)
+
+[node name="TrafficLight_v3" parent="Buildings/Props" unique_id=1053862930 instance=ExtResource("10_rkun3")]
+transform = Transform3D(-0.14035901, 0, -0.9901007, 0, 1, 0, 0.9901007, 0, -0.14035901, -54.545532, 0.0018310776, 29.319962)
+
+[node name="TrafficLight_v4" parent="Buildings/Props" unique_id=1950171628 instance=ExtResource("10_rkun3")]
+transform = Transform3D(0.9906653, 0, -0.13631663, 0, 1, 0, 0.13631663, 0, 0.9906653, -44.247375, 0.0018310776, 30.265625)
+
+[node name="TrashCan_v1" parent="Buildings/Props" unique_id=1264820785 instance=ExtResource("11_0kcuw")]
+transform = Transform3D(0.9767388, 0, -0.21443246, 0, 1, 0, 0.21443246, 0, 0.9767388, -45.487186, -0.0049438477, 35.66455)
+
+[node name="TrashCan_v2" parent="Buildings/Props" unique_id=143676862 instance=ExtResource("11_0kcuw")]
+transform = Transform3D(0.9767388, 0, -0.21443246, 0, 1, 0, 0.21443246, 0, 0.9767388, -45.625618, -0.0049438477, 36.370472)
+
+[node name="TrashCan_v3" parent="Buildings/Props" unique_id=1254822852 instance=ExtResource("11_0kcuw")]
+transform = Transform3D(0.9767388, 0, -0.21443246, 0, 1, 0, 0.21443246, 0, 0.9767388, -45.795536, -0.0049438477, 37.08349)

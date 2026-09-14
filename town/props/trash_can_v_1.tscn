@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cvtkljwhw2j0n"]
+
+[ext_resource type="PackedScene" uid="uid://cdn0j28tfmygu" path="res://town/props/models/TrashCan_v1.fbx" id="1_852is"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_37rd0"]
+size = Vector3(0.72924805, 1.0907593, 0.63623047)
+
+[node name="TrashCan_v1" unique_id=1264820785 instance=ExtResource("1_852is")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1829454833]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=308442274]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00012207031, 0.55215454, -0.0007324219)
+shape = SubResource("BoxShape3D_37rd0")

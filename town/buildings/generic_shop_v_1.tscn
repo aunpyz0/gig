@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://d3kt58hbu1ace"]
+
+[ext_resource type="PackedScene" uid="uid://c3isgolskkmge" path="res://town/buildings/models/GenericShop_v1.fbx" id="1_pqa7h"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_37rd0"]
+size = Vector3(6.4434814, 9.250488, 9.497009)
+
+[node name="GenericShop_v1" unique_id=72260682 instance=ExtResource("1_pqa7h")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=452233177]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1582707132]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0044555664, 4.612549, 0.0043029785)
+shape = SubResource("BoxShape3D_37rd0")

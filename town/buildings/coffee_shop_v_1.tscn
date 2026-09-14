@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://c5kk2psve1tc3"]
+
+[ext_resource type="PackedScene" uid="uid://n2s2o4y27fpe" path="res://town/buildings/models/CoffeeShop_v1.fbx" id="1_0hf0g"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_37rd0"]
+size = Vector3(9.618195, 4.9509277, 6.0626526)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0hf0g"]
+size = Vector3(4.837715, 4.9509277, 2.0734024)
+
+[node name="CoffeeShop_v1" unique_id=799825398 instance=ExtResource("1_0hf0g")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=728101694]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1119170140]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.007156372, 2.3736572, -1.0076752)
+shape = SubResource("BoxShape3D_37rd0")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1" unique_id=1292904772]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.007282257, 2.3736572, 2.9658775)
+shape = SubResource("BoxShape3D_0hf0g")

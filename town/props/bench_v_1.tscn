@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://coq7av5uuj7ga"]
+
+[ext_resource type="PackedScene" uid="uid://b8nbp8b5nuhc1" path="res://town/props/models/Bench_v1.fbx" id="1_5b3f7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_37rd0"]
+size = Vector3(1.454956, 0.5053711, 0.6161499)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5b3f7"]
+size = Vector3(1.454956, 0.6921997, 0.122039795)
+
+[node name="Bench_v1" unique_id=438506500 instance=ExtResource("1_5b3f7")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1560166944]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=787961895]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0014038086, 0.24731445, 0.30508423)
+shape = SubResource("BoxShape3D_37rd0")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1" unique_id=351082304]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0014038086, 0.8551941, 0.058029175)
+shape = SubResource("BoxShape3D_5b3f7")

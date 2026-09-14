@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://doeu4njmxoifm"]
+
+[ext_resource type="PackedScene" uid="uid://d1ktht7srgui5" path="res://town/buildings/models/Restaurant_v1.fbx" id="1_omqwi"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_37rd0"]
+points = PackedVector3Array(2.48, 0, 3.78, -3.77, 0, 3.75, -3.77, 0, -3.75, 3.77, 0, -3.75, 3.77, 0, 2.215, 2.48, 4.505, 3.78, -3.77, 4.505, 3.75, -3.77, 4.505, -3.75, 3.77, 4.505, -3.75, 3.77, 4.505, 2.215)
+
+[node name="Restaurant_v1" unique_id=720930305 instance=ExtResource("1_omqwi")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1569676240]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=2114486416]
+shape = SubResource("ConvexPolygonShape3D_37rd0")
