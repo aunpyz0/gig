@@ -12,3 +12,6 @@ size = Vector3(5.027954, 9.018799, 5.675354)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1710432186]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0051879883, 4.494816, 0.15170288)
 shape = SubResource("BoxShape3D_37rd0")
+
+[node name="Dropoff" type="Node3D" parent="." index="2" unique_id=56449820 groups=["drop-off"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
