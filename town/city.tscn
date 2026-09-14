@@ -63,9 +63,6 @@ transform = Transform3D(-0.66916984, 0, -0.74310946, 0, 1, 0, 0.74310946, 0, -0.
 [node name="Apartment_v1" parent="Buildings/Houses" unique_id=973859537 groups=["houses"] instance=ExtResource("2_ueojo")]
 transform = Transform3D(0.99727726, 0, -0.07374324, 0, 1, 0, 0.07374324, 0, 0.99727726, -18.883196, 0.24195355, 15.947959)
 
-[node name="Dropoff" type="Node3D" parent="Buildings/Houses/Apartment_v1" unique_id=462007099 groups=["drop-off"]]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -3.073364e-08, 0, 6.5479093)
-
 [node name="Shops" type="Node3D" parent="Buildings" unique_id=2026962371]
 
 [node name="Restaurant_v1" parent="Buildings/Shops" unique_id=720930305 groups=["shops"] instance=ExtResource("8_6xfuj")]
