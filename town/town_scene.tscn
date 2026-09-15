@@ -5,6 +5,7 @@
 [ext_resource type="Material" uid="uid://boboc4pk5t03s" path="res://town/sky_day.tres" id="2_1df3w"]
 [ext_resource type="Script" uid="uid://dj62ndmuwadxb" path="res://town/world.gd" id="2_pvdab"]
 [ext_resource type="PackedScene" uid="uid://cf2bmynxs522" path="res://town/lamp/lamp_scene.tscn" id="3_clgdk"]
+[ext_resource type="PackedScene" uid="uid://dli730nkqbsbq" path="res://fuel/fuel.tscn" id="6_w44mb"]
 [ext_resource type="Texture2D" uid="uid://dctnd5sdo5ydj" path="res://town/ui/turbometer.webp" id="8_clgdk"]
 [ext_resource type="Texture2D" uid="uid://hccdo2xu0fl" path="res://town/ui/turbometer_background.webp" id="8_tyv8r"]
 [ext_resource type="PackedScene" uid="uid://i7wycg74hkxw" path="res://town/city.tscn" id="9_tyv8r"]
@@ -254,6 +255,9 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="Fuel" parent="." unique_id=297156529 instance=ExtResource("6_w44mb")]
+unique_name_in_owner = true
 
 [node name="GameUI" type="VBoxContainer" parent="." unique_id=870721625]
 offset_left = 24.0

@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://dli730nkqbsbq"]
+
+[ext_resource type="Script" uid="uid://3qe4bd8j1lwf" path="res://fuel/fuel.gd" id="1_j52im"]
+[ext_resource type="Texture2D" uid="uid://csics15qm0t1u" path="res://fuel/Gauges_Base.png" id="2_j52im"]
+[ext_resource type="Texture2D" uid="uid://bink0w4kba3w1" path="res://fuel/Gauges_Gas.png" id="3_facgg"]
+
+[node name="Fuel" type="Control" unique_id=297156529]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j52im")
+
+[node name="Control" type="Control" parent="." unique_id=1494424775]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="GaugesBase" type="Sprite2D" parent="Control" unique_id=877118217]
+position = Vector2(0, -105)
+texture = ExtResource("2_j52im")
+
+[node name="GaugesGas" type="Sprite2D" parent="Control" unique_id=1945191941]
+unique_name_in_owner = true
+position = Vector2(0, -23)
+texture = ExtResource("3_facgg")

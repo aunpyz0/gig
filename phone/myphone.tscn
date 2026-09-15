@@ -17,7 +17,15 @@ script = ExtResource("1_bf2e3")
 position = Vector2(306.5, 871.5)
 texture = ExtResource("1_75hpb")
 
-[node name="Compass" type="Sprite2D" parent="." unique_id=743019116]
+[node name="CompassControl" type="Control" parent="." unique_id=1512021506]
 unique_name_in_owner = true
-position = Vector2(236, 786)
+anchors_preset = 0
+offset_left = 235.0
+offset_top = 768.275
+offset_right = 235.0
+offset_bottom = 768.275
+pivot_offset = Vector2(0, 21.94)
+
+[node name="Compass" type="Sprite2D" parent="CompassControl" unique_id=743019116]
+scale = Vector2(0.9, 0.9)
 texture = ExtResource("2_bf2e3")

@@ -1,6 +1,7 @@
+class_name Marker
 extends Node3D
 
-signal new_job(Node3D)
+signal track(Marker)
 signal delivered
 
 # Called when the node enters the scene tree for the first time.
@@ -17,5 +18,5 @@ func _on_area_3d_body_shape_entered(body_rid: RID, body: Node3D, body_shape_inde
 	delivered.emit()
 	queue_free()
 
-func created() -> void:
-	new_job.emit(get_node("."))
+func start_track() -> void:
+	track.emit(get_node("."))

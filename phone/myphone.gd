@@ -1,6 +1,6 @@
 extends Control
 
-@onready var compass: Sprite2D = %Compass
+@onready var compass: Control = %CompassControl
 var _owner: Node3D
 var _target: Node3D
 
@@ -25,5 +25,5 @@ func _update_compass(delta: float) -> void:
 func poweron(owner: Node3D) -> void:
 	_owner = owner
 
-func new_job(target: Node3D) -> void:
+func track(target: Marker) -> void:
 	_target = target

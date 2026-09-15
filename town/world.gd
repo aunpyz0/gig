@@ -1,28 +1,77 @@
 extends Node3D
 
 var _houses: Array[Node]
-var _delivering_house: Node
+var _shops: Array[Node]
+var _job: Job
+var _pickup_tracked := false
+var _dropoff_tracked := false
 var _marker: Resource
+
+class Job:
+	enum {CREATED, PICKEDUP, DROPPEDOFF}
+	
+	var _pickup: Node3D
+	var _dropoff: Node3D
+	
+	func _init(pickup: Node3D, dropoff: Node3D) -> void:
+		_pickup = pickup
+		_dropoff = dropoff
+	
+	func just_received() -> bool:
+		return _pickup != null && _dropoff != null
+	
+	func has_picked_up() -> bool:
+		return _pickup == null && _dropoff != null
+	
+	func has_dropped_off() -> bool:
+		return _pickup == null && _dropoff == null
+	
+	func mark_pickup(marker: Marker) -> void:
+		_pickup.add_child(marker)
+		var picked_up: Callable = func () -> void:
+			_pickup = null
+		marker.delivered.connect(picked_up)
+	
+	func mark_dropoff(marker: Marker) -> void:
+		_dropoff.add_child(marker)
+		var dropped_off: Callable = func () -> void:
+			_dropoff = null
+		marker.delivered.connect(dropped_off)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_houses = get_tree().get_nodes_in_group(&"drop-off")
+	_shops = get_tree().get_nodes_in_group(&"pick-up")
 	_marker = preload("res://marker/marker.tscn")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if (_delivering_house == null):
-		_delivering_house = _random_house()
-		var marker: Node3D = _marker.instantiate()
-		_delivering_house.add_child(marker)
-		marker.delivered.connect(_on_delivered)
-		marker.new_job.connect(%Myphone.new_job)
-		marker.created()
+	if (_job == null):
+		var pickup := _random_shop()
+		var dropoff := _random_house()
+		_job = Job.new(pickup, dropoff)
+
+	if (_job.just_received() && !_pickup_tracked):
+		var marker: Marker = _marker.instantiate()
+		_job.mark_pickup(marker)
+		marker.track.connect(%Myphone.track)
+		marker.start_track()
+		_pickup_tracked = true
+	elif (_job.has_picked_up() && !_dropoff_tracked):
+		var marker: Marker = _marker.instantiate()
+		_job.mark_dropoff(marker)
+		marker.track.connect(%Myphone.track)
+		marker.start_track()
+		_dropoff_tracked = true
+	elif (_job.has_dropped_off()):
+		_job = null
+		_pickup_tracked = false
+		_dropoff_tracked = false
+
+func _random_shop() -> Node3D:
+	return _shops.pick_random()
 
 func _random_house() -> Node3D:
 	#TODO: Maybe re-random if what is random turns into the same Node again
 	return _houses.pick_random()
-
-func _on_delivered() -> void:
-	_delivering_house = null
