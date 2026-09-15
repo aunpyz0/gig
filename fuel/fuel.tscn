@@ -20,6 +20,8 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
+offset_top = -6.959961
+offset_bottom = -6.959961
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -27,7 +29,12 @@ grow_vertical = 0
 position = Vector2(0, -105)
 texture = ExtResource("2_j52im")
 
-[node name="GaugesGas" type="Sprite2D" parent="Control" unique_id=1945191941]
+[node name="Control" type="Control" parent="Control" unique_id=1289313346]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GaugesGas" type="Sprite2D" parent="Control/Control" unique_id=1945191941]
 unique_name_in_owner = true
 position = Vector2(0, -23)
 texture = ExtResource("3_facgg")

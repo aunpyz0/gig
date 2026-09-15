@@ -1,3 +1,4 @@
+class_name Car
 extends VehicleBody3D
 
 const STEER_SPEED = 1.5
@@ -8,6 +9,11 @@ const BRAKE_STRENGTH = 2.0
 
 var turbometer: Range
 var turbo_animator: AnimationPlayer
+var _gas_max_seconds := 360
+var _gas := _gas_max_seconds / 2.0
+var gas_left: float:
+	get:
+		return _gas / _gas_max_seconds
 
 var previous_speed := linear_velocity.length()
 var turbo_active := false
@@ -17,13 +23,17 @@ var is_compatibility := RenderingServer.get_current_rendering_method() == "gl_co
 
 @onready var desired_engine_pitch: float = $EngineSound.pitch_scale
 
-
 func _ready() -> void:
 	assert(turbometer)
 	assert(turbo_animator)
 
+func _process(delta: float) -> void:
+	_gas -= delta
 
 func _physics_process(delta: float) -> void:
+	if (_gas <= 0):
+		return
+	
 	_steer_target = Input.get_axis(&"turn_right", &"turn_left")
 	_steer_target *= STEER_LIMIT
 
@@ -122,3 +132,6 @@ func toggle_headlights() -> void:
 			t.finished.connect(func() -> void:
 				node.visible = false
 			)
+
+func refuel() -> void:
+	_gas = _gas_max_seconds

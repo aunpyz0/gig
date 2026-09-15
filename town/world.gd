@@ -28,22 +28,30 @@ class Job:
 	
 	func mark_pickup(marker: Marker) -> void:
 		_pickup.add_child(marker)
-		var picked_up: Callable = func () -> void:
+		var picked_up: Callable = func (m: Marker, _c: Car) -> void:
 			_pickup = null
-		marker.delivered.connect(picked_up)
+			m.queue_free()
+		marker.reached.connect(picked_up)
 	
 	func mark_dropoff(marker: Marker) -> void:
 		_dropoff.add_child(marker)
-		var dropped_off: Callable = func () -> void:
+		var dropped_off: Callable = func (m: Marker, _c: Car) -> void:
 			_dropoff = null
-		marker.delivered.connect(dropped_off)
+			m.queue_free()
+		marker.reached.connect(dropped_off)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_houses = get_tree().get_nodes_in_group(&"drop-off")
 	_shops = get_tree().get_nodes_in_group(&"pick-up")
 	_marker = preload("res://marker/marker.tscn")
-
+	var refuels := get_tree().get_nodes_in_group(&"refuel")
+	for rf in refuels:
+		var marker: Marker = _marker.instantiate()
+		rf.add_child(marker)
+		var refuel: Callable = func (_m: Marker, c: Car) -> void:
+			c.refuel()
+		marker.reached.connect(refuel)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
