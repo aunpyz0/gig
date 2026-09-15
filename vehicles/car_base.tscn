@@ -149,9 +149,9 @@ transform = Transform3D(-1, 7.549528e-08, -1.3076772e-07, 0, 0.8660354, 0.499982
 projection = 1
 fov = 74.0
 size = 8.300103
-near = 0.1
+near = 0.001
 script = ExtResource("4_6igu8")
-min_distance = 4.0
+min_distance = 0.0
 max_distance = 5.0
 height = 1.25
 
