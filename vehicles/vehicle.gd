@@ -9,7 +9,7 @@ const BRAKE_STRENGTH = 2.0
 
 var turbometer: Range
 var turbo_animator: AnimationPlayer
-var _gas_max_seconds := 360
+var _gas_max_seconds := 90
 var _gas := _gas_max_seconds / 2.0
 var gas_left: float:
 	get:
@@ -28,7 +28,7 @@ func _ready() -> void:
 	assert(turbo_animator)
 
 func _process(delta: float) -> void:
-	_gas -= delta
+	_gas = maxf(0, _gas - delta)
 
 func _physics_process(delta: float) -> void:
 	if (_gas <= 0):
