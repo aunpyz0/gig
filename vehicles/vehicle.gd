@@ -4,13 +4,14 @@ extends VehicleBody3D
 const STEER_SPEED = 1.5
 const STEER_LIMIT = 0.4
 const BRAKE_STRENGTH = 2.0
+const FULL_TANK_SECONDS = 90
 
 @export var engine_force_value := 40.0
 
 var turbometer: Range
 var turbo_animator: AnimationPlayer
-var _gas_max_seconds := 90
-var _gas := _gas_max_seconds / 2.0
+var _gas_max_seconds := FULL_TANK_SECONDS
+var _gas: float = _gas_max_seconds
 var gas_left: float:
 	get:
 		return _gas / _gas_max_seconds
@@ -137,3 +138,6 @@ func toggle_headlights() -> void:
 
 func refuel() -> void:
 	_gas = _gas_max_seconds
+
+func refuel_by_amount(amount: float) -> void:
+	_gas += amount

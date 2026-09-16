@@ -2,6 +2,7 @@ extends Node3D
 
 @onready var _phone: Phone = %Myphone
 
+const FULL_GAS_PRICE: int = 42
 var _houses: Array[Node]
 var _shops: Array[Node]
 var _job: Job
@@ -32,14 +33,14 @@ class Job:
 	
 	func mark_pickup(phone: Phone, marker: Marker) -> void:
 		var balance := phone.balance
-		_pickup_cost = _rng.randi_range(int(balance * 0.3), balance)
+		_pickup_cost = _rng.randi_range(int(balance * 0.3), int(balance * 0.7))
 		_pickup.add_child(marker)
 		marker.track.connect(phone.track)
 		var picked_up: Callable = func (m: Marker, c: Car) -> void:
-			if (c.bank_account.withdraw(_pickup_cost)):
-				phone.notify("Balance -%d" % _pickup_cost)
-				_pickup = null
-				m.queue_free()
+			c.bank_account.prepaid(_pickup_cost)
+			phone.notify("Balance -%d" % _pickup_cost)
+			_pickup = null
+			m.queue_free()
 		marker.reached.connect(picked_up)
 		marker.start_track()
 	
@@ -65,10 +66,26 @@ func _ready() -> void:
 		var marker: Marker = _marker.instantiate()
 		rf.add_child(marker)
 		var refuel: Callable = func (_m: Marker, c: Car) -> void:
-			if c.bank_account.withdraw(42):
-				_phone.notify("Balance -42")
+			var gas_price := _get_gas_price(c)
+			var balance_left := c.bank_account.balance
+			if c.bank_account.withdraw(gas_price):
+				_phone.notify("Balance -%d" % gas_price)
 				c.refuel()
+			elif balance_left > 0:
+				var refuelable: float = float(Car.FULL_TANK_SECONDS) * balance_left / FULL_GAS_PRICE
+				c.bank_account.withdraw(balance_left)
+				_phone.notify("Balance -%d" % balance_left)
+				c.refuel_by_amount(refuelable)
 		marker.reached.connect(refuel)
+
+func _get_gas_price(c: Car) -> int:
+	var gas_left := c.gas_left
+	if gas_left <= 0.25:
+		return FULL_GAS_PRICE
+	elif gas_left <= 0.75:
+			return FULL_GAS_PRICE / 2
+	else:
+		return 10 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

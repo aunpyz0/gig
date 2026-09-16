@@ -13,6 +13,9 @@ func deposit(amount: int) -> void:
 	assert(amount >= 0, "Amount must not be negative!")
 	_balance += amount
 
+func prepaid(amount: int) -> void:
+	_balance -= amount
+
 func withdraw(amount: int) -> bool:
 	assert(amount >= 0, "Amount must not be negative!")
 	if (_balance >= amount):
