@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dsh3yi5kx7tga"]
+
+[ext_resource type="PackedScene" uid="uid://cplurqn1teh8n" path="res://town/props/models/tree 3.fbx" id="1_x2ei5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g0rel"]
+size = Vector3(0.25610352, 1.7497559, 0.25238037)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x2ei5"]
+size = Vector3(2.249878, 3.522583, 2.25)
+
+[node name="tree 3" unique_id=571963282 instance=ExtResource("1_x2ei5")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="7" unique_id=1525143839]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=37176275]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00061035156, 0.87854004, -0.00033569336)
+shape = SubResource("BoxShape3D_g0rel")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1" unique_id=288047529]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.070373535, 3.5041916, 0.0126953125)
+shape = SubResource("BoxShape3D_x2ei5")

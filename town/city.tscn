@@ -70,7 +70,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 241.
 shape = SubResource("BoxShape3D_6mxs4")
 
 [node name="Ground" type="MeshInstance3D" parent="." unique_id=18303914]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.703, -0.666, 24.107)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.703, -0.5301058, 24.107)
 mesh = SubResource("BoxMesh_37rd0")
 
 [node name="Buildings" type="Node3D" parent="." unique_id=1939445849]

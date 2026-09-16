@@ -145,9 +145,7 @@ shape = SubResource("BoxShape3D_x74tc")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.97449, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Body/CameraBase" unique_id=1453725238]
-transform = Transform3D(-1, 7.549529e-08, -1.307677e-07, 2.6904061e-08, 0.9412631, 0.33767408, 1.4857962e-07, 0.33767408, -0.9412631, -9.183217e-05, 2.7783108, -5.2073765)
-projection = 1
-fov = 74.0
+transform = Transform3D(-1, 7.549529e-08, -1.307677e-07, 2.6904061e-08, 0.9412631, 0.33767408, 1.4857962e-07, 0.33767408, -0.9412631, -9.248794e-05, 3.5836, -8.140681)
 size = 8.300103
 near = 0.001
 script = ExtResource("4_6igu8")

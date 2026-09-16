@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bvo87qxb15as2"]
+
+[ext_resource type="Texture2D" uid="uid://b8q7jg0bt7nre" path="res://town/props/models/tree 1.png" id="1_1uu6i"]
+
+[resource]
+resource_name = "tree 1.png"
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_1uu6i")
+emission_enabled = true
+texture_filter = 0
