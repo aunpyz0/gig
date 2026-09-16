@@ -34,6 +34,10 @@ window/stretch/aspect="expand"
 
 project/assembly_name="GrabSimulator2000"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/proton_scatter/plugin.cfg")
+
 [global_group]
 
 headlight=""
