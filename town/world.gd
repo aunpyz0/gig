@@ -50,7 +50,8 @@ func _ready() -> void:
 		var marker: Marker = _marker.instantiate()
 		rf.add_child(marker)
 		var refuel: Callable = func (_m: Marker, c: Car) -> void:
-			c.refuel()
+			if c.bank_account.withdraw(42):
+				c.refuel()
 		marker.reached.connect(refuel)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

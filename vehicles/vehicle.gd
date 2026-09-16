@@ -15,6 +15,7 @@ var gas_left: float:
 	get:
 		return _gas / _gas_max_seconds
 
+var bank_account := BankAccount.new(120)
 var previous_speed := linear_velocity.length()
 var turbo_active := false
 var headlights_active := false
@@ -32,6 +33,7 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	if (_gas <= 0):
+		linear_velocity = Vector3.ZERO
 		return
 	
 	_steer_target = Input.get_axis(&"turn_right", &"turn_left")

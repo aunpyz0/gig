@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://brc6tmifrruc4" path="res://phone/myphone-17-plus-ultra.png" id="1_75hpb"]
 [ext_resource type="Script" uid="uid://bow8inaeiyf33" path="res://phone/myphone.gd" id="1_bf2e3"]
 [ext_resource type="Texture2D" uid="uid://cnq4b834i4oed" path="res://phone/compass.png" id="2_bf2e3"]
+[ext_resource type="FontFile" uid="uid://cgwn3p3itcwwd" path="res://5x7-pixel-monospace.otf" id="4_6tmjn"]
 
 [node name="Myphone" type="Control" unique_id=1695972050]
 layout_mode = 3
@@ -29,3 +30,22 @@ pivot_offset = Vector2(0, 21.94)
 [node name="Compass" type="Sprite2D" parent="CompassControl" unique_id=743019116]
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("2_bf2e3")
+
+[node name="Control" type="Control" parent="." unique_id=603327933]
+anchors_preset = 0
+offset_left = 334.0
+offset_top = 728.0
+offset_right = 334.0
+offset_bottom = 728.0
+
+[node name="Balance" type="RichTextLabel" parent="Control" unique_id=756711315]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -12.0
+offset_right = 108.0
+offset_bottom = 120.0
+theme_override_fonts/normal_font = ExtResource("4_6tmjn")
+theme_override_fonts/bold_font = ExtResource("4_6tmjn")
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+bbcode_enabled = true

@@ -260,6 +260,7 @@ grow_vertical = 1
 unique_name_in_owner = true
 
 [node name="GameUI" type="VBoxContainer" parent="." unique_id=870721625]
+visible = false
 offset_left = 24.0
 offset_top = 24.0
 offset_right = 168.0

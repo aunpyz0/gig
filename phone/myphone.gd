@@ -1,16 +1,24 @@
 extends Control
 
 @onready var compass: Control = %CompassControl
+@onready var balance_text: RichTextLabel = %Balance
 var _owner: Node3D
 var _target: Node3D
+var _bank_account: BankAccount
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
-
+	balance_text.clear()
+	balance_text.push_bold()
+	balance_text.add_text("Balance: ")
+	balance_text.pop()
+	balance_text.add_text("NaN")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if (_bank_account != null):
+		_uppdate_balance()
+	
 	if (_owner == null):
 		return
 
@@ -27,3 +35,13 @@ func poweron(owner: Node3D) -> void:
 
 func track(target: Marker) -> void:
 	_target = target
+
+func track_balance(bank_account: BankAccount) -> void:
+	_bank_account = bank_account
+
+func _uppdate_balance() -> void:
+	balance_text.clear()
+	balance_text.push_bold()
+	balance_text.add_text("Balance: ")
+	balance_text.pop()
+	balance_text.add_text(str(_bank_account.balance))
