@@ -51,6 +51,7 @@ func _ready() -> void:
 		rf.add_child(marker)
 		var refuel: Callable = func (_m: Marker, c: Car) -> void:
 			if c.bank_account.withdraw(42):
+				%Myphone.notify("Balance -42")
 				c.refuel()
 		marker.reached.connect(refuel)
 

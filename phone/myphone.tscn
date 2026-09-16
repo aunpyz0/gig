@@ -4,6 +4,18 @@
 [ext_resource type="Script" uid="uid://bow8inaeiyf33" path="res://phone/myphone.gd" id="1_bf2e3"]
 [ext_resource type="Texture2D" uid="uid://cnq4b834i4oed" path="res://phone/compass.png" id="2_bf2e3"]
 [ext_resource type="FontFile" uid="uid://cgwn3p3itcwwd" path="res://5x7-pixel-monospace.otf" id="4_6tmjn"]
+[ext_resource type="Script" uid="uid://cl37xfqdy4g1c" path="res://phone/noti.gd" id="5_vssvx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g0rel"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.7529412)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="Myphone" type="Control" unique_id=1695972050]
 layout_mode = 3
@@ -31,14 +43,14 @@ pivot_offset = Vector2(0, 21.94)
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("2_bf2e3")
 
-[node name="Control" type="Control" parent="." unique_id=603327933]
+[node name="BalanceControl" type="Control" parent="." unique_id=603327933]
 anchors_preset = 0
 offset_left = 334.0
 offset_top = 728.0
 offset_right = 334.0
 offset_bottom = 728.0
 
-[node name="Balance" type="RichTextLabel" parent="Control" unique_id=756711315]
+[node name="Balance" type="RichTextLabel" parent="BalanceControl" unique_id=756711315]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = -12.0
@@ -49,3 +61,29 @@ theme_override_fonts/bold_font = ExtResource("4_6tmjn")
 theme_override_font_sizes/normal_font_size = 24
 theme_override_font_sizes/bold_font_size = 24
 bbcode_enabled = true
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+scroll_active = false
+
+[node name="NotiControl" type="Control" parent="." unique_id=367327970]
+anchors_preset = 0
+offset_left = 168.0
+offset_top = 702.0
+offset_right = 448.0
+offset_bottom = 732.0
+
+[node name="Noti" type="Label" parent="NotiControl" unique_id=2106015600]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_6tmjn")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_g0rel")
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit"
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 5
+script = ExtResource("5_vssvx")
