@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cwkkacemw2q1i"]
+
+[ext_resource type="ArrayMesh" uid="uid://d4nmph24u0f07" path="res://town/props/models/Billboard_3_v2.obj" id="1_gacak"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g0rel"]
+size = Vector3(0.60705566, 5.004883, 0.61517334)
+
+[node name="Billboard3" type="Node3D" unique_id=1846173779]
+
+[node name="Billboard3V2" type="MeshInstance3D" parent="." unique_id=380313968]
+mesh = ExtResource("1_gacak")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1474621051]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1401586074]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0115356445, 2.5063477, -9.1552734e-05)
+shape = SubResource("BoxShape3D_g0rel")
