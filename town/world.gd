@@ -1,5 +1,7 @@
 extends Node3D
 
+@onready var _phone: Phone = %Myphone
+
 var _houses: Array[Node]
 var _shops: Array[Node]
 var _job: Job
@@ -10,6 +12,8 @@ var _marker: Resource
 class Job:
 	enum {CREATED, PICKEDUP, DROPPEDOFF}
 	
+	var _rng := RandomNumberGenerator.new()
+	var _pickup_cost: int
 	var _pickup: Node3D
 	var _dropoff: Node3D
 	
@@ -26,19 +30,30 @@ class Job:
 	func has_dropped_off() -> bool:
 		return _pickup == null && _dropoff == null
 	
-	func mark_pickup(marker: Marker) -> void:
+	func mark_pickup(phone: Phone, marker: Marker) -> void:
+		var balance := phone.balance
+		_pickup_cost = _rng.randi_range(int(balance * 0.3), balance)
 		_pickup.add_child(marker)
-		var picked_up: Callable = func (m: Marker, _c: Car) -> void:
-			_pickup = null
-			m.queue_free()
+		marker.track.connect(phone.track)
+		var picked_up: Callable = func (m: Marker, c: Car) -> void:
+			if (c.bank_account.withdraw(_pickup_cost)):
+				phone.notify("Balance -%d" % _pickup_cost)
+				_pickup = null
+				m.queue_free()
 		marker.reached.connect(picked_up)
+		marker.start_track()
 	
-	func mark_dropoff(marker: Marker) -> void:
+	func mark_dropoff(phone: Phone, marker: Marker) -> void:
 		_dropoff.add_child(marker)
-		var dropped_off: Callable = func (m: Marker, _c: Car) -> void:
+		marker.track.connect(phone.track)
+		var dropped_off: Callable = func (m: Marker, c: Car) -> void:
+			var payment := _pickup_cost + 20
+			c.bank_account.deposit(payment)
+			phone.notify("Delivered!! Balance +%d" % payment)
 			_dropoff = null
 			m.queue_free()
 		marker.reached.connect(dropped_off)
+		marker.start_track()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -51,7 +66,7 @@ func _ready() -> void:
 		rf.add_child(marker)
 		var refuel: Callable = func (_m: Marker, c: Car) -> void:
 			if c.bank_account.withdraw(42):
-				%Myphone.notify("Balance -42")
+				_phone.notify("Balance -42")
 				c.refuel()
 		marker.reached.connect(refuel)
 
@@ -64,15 +79,11 @@ func _process(delta: float) -> void:
 
 	if (_job.just_received() && !_pickup_tracked):
 		var marker: Marker = _marker.instantiate()
-		_job.mark_pickup(marker)
-		marker.track.connect(%Myphone.track)
-		marker.start_track()
+		_job.mark_pickup(_phone, marker)
 		_pickup_tracked = true
 	elif (_job.has_picked_up() && !_dropoff_tracked):
 		var marker: Marker = _marker.instantiate()
-		_job.mark_dropoff(marker)
-		marker.track.connect(%Myphone.track)
-		marker.start_track()
+		_job.mark_dropoff(_phone, marker)
 		_dropoff_tracked = true
 	elif (_job.has_dropped_off()):
 		_job = null

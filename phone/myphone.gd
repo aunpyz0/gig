@@ -1,3 +1,4 @@
+class_name Phone
 extends Control
 
 @onready var _compass: Control = %CompassControl
@@ -6,6 +7,10 @@ extends Control
 var _owner: Node3D
 var _target: Node3D
 var _bank_account: BankAccount
+
+var balance: int:
+	get:
+		return _bank_account.balance
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
