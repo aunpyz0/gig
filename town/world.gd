@@ -9,7 +9,9 @@ var _shops: Array[Node]
 var _job: Job
 var _pickup_tracked := false
 var _dropoff_tracked := false
-var _marker: Resource
+var _refuel_marker: Resource
+var _pickup_marker: Resource
+var _dropoff_marker: Resource
 var _refuels: Array[Marker]
 var _cooldown_time: float = 0
 
@@ -65,10 +67,12 @@ class Job:
 func _ready() -> void:
 	_houses = get_tree().get_nodes_in_group(&"drop-off")
 	_shops = get_tree().get_nodes_in_group(&"pick-up")
-	_marker = preload("res://marker/marker.tscn")
+	_refuel_marker = preload("res://marker/refuel_marker.tscn")
+	_pickup_marker = preload("res://marker/pickup_marker.tscn")
+	_dropoff_marker = preload("res://marker/dropoff_marker.tscn")
 	var refuels := get_tree().get_nodes_in_group(&"refuel")
 	for rf in refuels:
-		var marker: Marker = _marker.instantiate()
+		var marker: Marker = _refuel_marker.instantiate()
 		_refuels.push_back(marker)
 		rf.add_child(marker)
 		var refuel: Callable = func (_m: Marker, c: Car) -> void:
@@ -110,11 +114,11 @@ func _process(delta: float) -> void:
 		_job = Job.new(pickup, dropoff)
 
 	if (_job.just_received() && !_pickup_tracked):
-		var marker: Marker = _marker.instantiate()
+		var marker: Marker = _pickup_marker.instantiate()
 		_job.mark_pickup(_phone, marker)
 		_pickup_tracked = true
 	elif (_job.has_picked_up() && !_dropoff_tracked):
-		var marker: Marker = _marker.instantiate()
+		var marker: Marker = _dropoff_marker.instantiate()
 		_job.mark_dropoff(_phone, marker)
 		_dropoff_tracked = true
 	elif (_job.has_dropped_off()):

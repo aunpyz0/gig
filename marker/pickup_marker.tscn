@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bwre0pjym5qx4"]
+
+[ext_resource type="PackedScene" uid="uid://cbca3v8afiwmv" path="res://marker/marker.tscn" id="1_m2uno"]
+[ext_resource type="SpriteFrames" uid="uid://dkk0s58plhndb" path="res://marker/delivery_pickup.tres" id="2_dwska"]
+
+[node name="Marker" unique_id=1124532683 instance=ExtResource("1_m2uno")]
+
+[node name="AnimatedSprite3D" parent="." index="2" unique_id=1125753805]
+sprite_frames = ExtResource("2_dwska")
