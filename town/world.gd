@@ -28,11 +28,10 @@ class Job:
 	func _init(pickup: Node3D, dropoff: Node3D) -> void:
 		_pickup = pickup
 		_dropoff = dropoff
-		if _pickup and _dropoff:
-			_total_distance_m = _pickup.global_position.distance_to(_dropoff.global_position)
-			var base_profit := 10
-			var rate_per_meter := 0.20
-			_profit = base_profit + int(_total_distance_m * rate_per_meter)
+		_total_distance_m = _pickup.global_position.distance_to(_dropoff.global_position)
+		var base_profit := 10
+		var rate_per_meter := 0.20
+		_profit = base_profit + int(_total_distance_m * rate_per_meter)
 	
 	func just_received() -> bool:
 		return _pickup != null && _dropoff != null
@@ -49,10 +48,10 @@ class Job:
 		marker.set_color(Vector3(0, 1, 1))
 		_pickup.add_child(marker)
 		marker.track.connect(phone.track)
+		phone.update_job_money(_pickup_cost, _profit, "Pick Up")
 		var picked_up: Callable = func (m: Marker, c: Car) -> void:
 			c.bank_account.prepaid(_pickup_cost)
 			phone.notify("Balance -%d" % _pickup_cost)
-			phone.update_job_money(_pickup_cost, _profit, "Deliver")
 			_pickup = null
 			m.queue_free()
 		marker.reached.connect(picked_up)
@@ -62,11 +61,11 @@ class Job:
 		_dropoff.add_child(marker)
 		marker.set_color(Vector3(1, 1, 0))
 		marker.track.connect(phone.track)
+		phone.update_job_money(_pickup_cost, _profit, "Deliver")
 		var dropped_off: Callable = func (m: Marker, c: Car) -> void:
 			var payment := _pickup_cost + _profit
 			c.bank_account.deposit(payment)
 			phone.notify("Delivered!! Balance +%d" % payment)
-			phone.update_job_money(_pickup_cost, _profit, "Pick Up")
 			_dropoff = null
 			m.queue_free()
 		marker.reached.connect(dropped_off)

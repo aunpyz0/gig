@@ -63,10 +63,7 @@ func _uppdate_balance() -> void:
 	_balance_text.add_text("Balance: ")
 	_balance_text.pop()
 	_balance_text.add_text(str(_bank_account.balance))
-	if _money != null:
-		_money.text = "Fee: $%d | Profit: +$%d" % [current_pickup_fee, current_profit]
-	if _job_status != null:
-		_job_status.text = current_status
+	_update_money_ui()
 
 func _update_distance() -> void:
 	var dist_m := _owner.global_position.distance_to(_target.global_position)
@@ -82,8 +79,5 @@ func update_job_money(fee: int, profit: int, status: String) -> void:
 	_update_money_ui()
 
 func _update_money_ui() -> void:
-	# This guard clause stops the crash if Godot tries to run this before the node exists
-	if _money == null or _job_status == null:
-		return
 	_money.text = "Fee: $%d | Profit: +$%d" % [current_pickup_fee, current_profit]
 	_job_status.text = current_status
