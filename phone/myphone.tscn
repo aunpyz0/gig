@@ -91,10 +91,10 @@ script = ExtResource("5_vssvx")
 
 [node name="DistanceControl" type="Control" parent="." unique_id=1621167996]
 anchors_preset = 0
-offset_left = 170.0
-offset_top = 860.0
-offset_right = 450.0
-offset_bottom = 890.0
+offset_left = 188.0
+offset_top = 848.0
+offset_right = 288.0
+offset_bottom = 878.0
 
 [node name="Distance" type="Label" parent="DistanceControl" unique_id=1652002472]
 unique_name_in_owner = true
@@ -153,10 +153,11 @@ anchor_bottom = 1.0
 offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_6tmjn")
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_g0rel")
-text = "Lorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit"
+theme_override_font_sizes/font_size = 36
+text = "999m"
+horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
 text_overrun_behavior = 5

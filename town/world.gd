@@ -3,13 +3,17 @@ extends Node3D
 @onready var _phone: Phone = %Myphone
 
 const FULL_GAS_PRICE: int = 42
+const REFUEL_COOLDOWN_TIME: float = 10
 var _houses: Array[Node]
 var _shops: Array[Node]
 var _job: Job
 var _pickup_tracked := false
 var _dropoff_tracked := false
-var _marker: Resource
-var cool_down_time: float = 10
+var _refuel_marker: Resource
+var _pickup_marker: Resource
+var _dropoff_marker: Resource
+var _refuels: Array[Marker]
+var _cooldown_time: float = 0
 
 class Job:
 	enum {CREATED, PICKEDUP, DROPPEDOFF}
@@ -42,6 +46,7 @@ class Job:
 	func mark_pickup(phone: Phone, marker: Marker) -> void:
 		var balance := phone.balance
 		_pickup_cost = _rng.randi_range(int(balance * 0.3), int(balance * 0.7))
+		marker.set_color(Vector3(0, 1, 1))
 		_pickup.add_child(marker)
 		marker.track.connect(phone.track)
 		var picked_up: Callable = func (m: Marker, c: Car) -> void:
@@ -55,6 +60,7 @@ class Job:
 	
 	func mark_dropoff(phone: Phone, marker: Marker) -> void:
 		_dropoff.add_child(marker)
+		marker.set_color(Vector3(1, 1, 0))
 		marker.track.connect(phone.track)
 		var dropped_off: Callable = func (m: Marker, c: Car) -> void:
 			var payment := _pickup_cost + _profit
@@ -70,25 +76,28 @@ class Job:
 func _ready() -> void:
 	_houses = get_tree().get_nodes_in_group(&"drop-off")
 	_shops = get_tree().get_nodes_in_group(&"pick-up")
-	_marker = preload("res://marker/marker.tscn")
+	_refuel_marker = preload("res://marker/refuel_marker.tscn")
+	_pickup_marker = preload("res://marker/pickup_marker.tscn")
+	_dropoff_marker = preload("res://marker/dropoff_marker.tscn")
 	var refuels := get_tree().get_nodes_in_group(&"refuel")
 	for rf in refuels:
-		var marker: Marker = _marker.instantiate()
+		var marker: Marker = _refuel_marker.instantiate()
+		_refuels.push_back(marker)
 		rf.add_child(marker)
 		var refuel: Callable = func (_m: Marker, c: Car) -> void:
-			if cool_down_time <= 0:
+			if _cooldown_time <= 0:
 				var gas_price := _get_gas_price(c)
 				var balance_left := c.bank_account.balance
 				if c.bank_account.withdraw(gas_price):
 					_phone.notify("Balance -%d" % gas_price)
 					c.refuel()
-					cool_down_time = 10
+					_cooldown_time = 10
 				elif balance_left > 0:
 					var refuelable: float = float(Car.FULL_TANK_SECONDS) * balance_left / FULL_GAS_PRICE
 					c.bank_account.withdraw(balance_left)
 					_phone.notify("Balance -%d" % balance_left)
 					c.refuel_by_amount(refuelable)
-					cool_down_time = 10
+					_cooldown_time = 10
 		marker.reached.connect(refuel)
 
 func _get_gas_price(c: Car) -> int:
@@ -102,7 +111,11 @@ func _get_gas_price(c: Car) -> int:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	cool_down_time -= delta
+	_cooldown_time -= delta
+	
+	var refuel_color := Vector3(1, 0, 0) if _cooldown_time > 0 else Vector3(0, 1, 0)
+	for rf in _refuels:
+		rf.set_color(refuel_color)
 	
 	if (_job == null):
 		var pickup := _random_shop()
@@ -110,11 +123,11 @@ func _process(delta: float) -> void:
 		_job = Job.new(pickup, dropoff)
 
 	if (_job.just_received() && !_pickup_tracked):
-		var marker: Marker = _marker.instantiate()
+		var marker: Marker = _pickup_marker.instantiate()
 		_job.mark_pickup(_phone, marker)
 		_pickup_tracked = true
 	elif (_job.has_picked_up() && !_dropoff_tracked):
-		var marker: Marker = _marker.instantiate()
+		var marker: Marker = _dropoff_marker.instantiate()
 		_job.mark_dropoff(_phone, marker)
 		_dropoff_tracked = true
 	elif (_job.has_dropped_off()):

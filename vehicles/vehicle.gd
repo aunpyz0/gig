@@ -33,7 +33,6 @@ func _process(delta: float) -> void:
 	_gas = maxf(0, _gas - delta)
 
 func _physics_process(delta: float) -> void:
-	
 	_steer_target = Input.get_axis(&"turn_right", &"turn_left")
 	_steer_target *= STEER_LIMIT
 	
