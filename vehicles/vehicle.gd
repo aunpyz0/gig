@@ -11,7 +11,7 @@ const FULL_TANK_SECONDS = 90
 var turbometer: Range
 var turbo_animator: AnimationPlayer
 var _gas_max_seconds := FULL_TANK_SECONDS
-var _gas: float = 5
+var _gas: float = _gas_max_seconds
 var gas_left: float:
 	get:
 		return _gas / _gas_max_seconds
