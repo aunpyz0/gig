@@ -5,6 +5,8 @@ extends Control
 @onready var _balance_text: RichTextLabel = %Balance
 @onready var _notification: Notification = %Noti
 @onready var _distance: Label = %Distance
+@onready var _money: Label = %Money
+@onready var _job_status: Label = %Job
 var _owner: Node3D
 var _target: Node3D
 var _bank_account: BankAccount
@@ -13,6 +15,10 @@ var balance: int:
 	get:
 		return _bank_account.balance
 
+var current_pickup_fee: int = 0
+var current_profit: int = 0
+var current_status: String = "Pick Up"
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_balance_text.clear()
@@ -20,6 +26,7 @@ func _ready() -> void:
 	_balance_text.add_text("Balance: ")
 	_balance_text.pop()
 	_balance_text.add_text("NaN")
+	_update_money_ui()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -56,13 +63,27 @@ func _uppdate_balance() -> void:
 	_balance_text.add_text("Balance: ")
 	_balance_text.pop()
 	_balance_text.add_text(str(_bank_account.balance))
+	if _money != null:
+		_money.text = "Fee: $%d | Profit: +$%d" % [current_pickup_fee, current_profit]
+	if _job_status != null:
+		_job_status.text = current_status
 
 func _update_distance() -> void:
-	# Calculate live distance from the car to the active marker
 	var dist_m := _owner.global_position.distance_to(_target.global_position)
-	
-	# Automatically switch between meters and kilometers based on distance
 	if dist_m >= 1000.0:
-		_distance.text = "%.2f km" % (dist_m / 1000.0) # e.g., "1.45 km"
+		_distance.text = "%.2f km" % (dist_m / 1000.0)
 	else:
-		_distance.text = "%.0f m" % dist_m # e.g., "342 m"
+		_distance.text = "%.0f m" % dist_m
+
+func update_job_money(fee: int, profit: int, status: String) -> void:
+	current_pickup_fee = fee
+	current_profit = profit
+	current_status = status
+	_update_money_ui()
+
+func _update_money_ui() -> void:
+	# This guard clause stops the crash if Godot tries to run this before the node exists
+	if _money == null or _job_status == null:
+		return
+	_money.text = "Fee: $%d | Profit: +$%d" % [current_pickup_fee, current_profit]
+	_job_status.text = current_status
