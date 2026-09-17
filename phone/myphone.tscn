@@ -87,3 +87,26 @@ vertical_alignment = 1
 clip_text = true
 text_overrun_behavior = 5
 script = ExtResource("5_vssvx")
+
+[node name="DistanceControl" type="Control" parent="." unique_id=1621167996]
+anchors_preset = 0
+offset_left = 168.0
+offset_top = 866.0
+offset_right = 448.0
+offset_bottom = 896.0
+
+[node name="Distance" type="Label" parent="DistanceControl" unique_id=1652002472]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_6tmjn")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_g0rel")
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elit"
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 5
