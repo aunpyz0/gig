@@ -11,7 +11,7 @@ const FULL_TANK_SECONDS = 90
 var turbometer: Range
 var turbo_animator: AnimationPlayer
 var _gas_max_seconds := FULL_TANK_SECONDS
-var _gas: float = _gas_max_seconds
+var _gas: float = 5
 var gas_left: float:
 	get:
 		return _gas / _gas_max_seconds
@@ -33,12 +33,18 @@ func _process(delta: float) -> void:
 	_gas = maxf(0, _gas - delta)
 
 func _physics_process(delta: float) -> void:
-	if (_gas <= 0):
-		linear_velocity = Vector3.ZERO
-		return
 	
 	_steer_target = Input.get_axis(&"turn_right", &"turn_left")
 	_steer_target *= STEER_LIMIT
+	
+	if (_gas <= 0):
+		engine_force = 0.0
+		constant_force = Vector3.ZERO
+		turbo_active = false
+		steering = move_toward(steering, _steer_target, STEER_SPEED * delta)
+		$EngineSound.pitch_scale = lerpf($EngineSound.pitch_scale, 0.0, 0.1)
+		previous_speed = linear_velocity.length()
+		return
 
 	# Engine sound simulation (not realistic, as this car script has no notion of gear or engine RPM).
 	desired_engine_pitch = 0.05 + linear_velocity.length() / (engine_force_value * 0.5)

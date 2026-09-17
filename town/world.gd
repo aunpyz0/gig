@@ -9,6 +9,7 @@ var _job: Job
 var _pickup_tracked := false
 var _dropoff_tracked := false
 var _marker: Resource
+var cool_down_time: float = 10
 
 class Job:
 	enum {CREATED, PICKEDUP, DROPPEDOFF}
@@ -66,16 +67,19 @@ func _ready() -> void:
 		var marker: Marker = _marker.instantiate()
 		rf.add_child(marker)
 		var refuel: Callable = func (_m: Marker, c: Car) -> void:
-			var gas_price := _get_gas_price(c)
-			var balance_left := c.bank_account.balance
-			if c.bank_account.withdraw(gas_price):
-				_phone.notify("Balance -%d" % gas_price)
-				c.refuel()
-			elif balance_left > 0:
-				var refuelable: float = float(Car.FULL_TANK_SECONDS) * balance_left / FULL_GAS_PRICE
-				c.bank_account.withdraw(balance_left)
-				_phone.notify("Balance -%d" % balance_left)
-				c.refuel_by_amount(refuelable)
+			if cool_down_time <= 0:
+				var gas_price := _get_gas_price(c)
+				var balance_left := c.bank_account.balance
+				if c.bank_account.withdraw(gas_price):
+					_phone.notify("Balance -%d" % gas_price)
+					c.refuel()
+					cool_down_time = 10
+				elif balance_left > 0:
+					var refuelable: float = float(Car.FULL_TANK_SECONDS) * balance_left / FULL_GAS_PRICE
+					c.bank_account.withdraw(balance_left)
+					_phone.notify("Balance -%d" % balance_left)
+					c.refuel_by_amount(refuelable)
+					cool_down_time = 10
 		marker.reached.connect(refuel)
 
 func _get_gas_price(c: Car) -> int:
@@ -89,6 +93,8 @@ func _get_gas_price(c: Car) -> int:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	cool_down_time -= delta
+	
 	if (_job == null):
 		var pickup := _random_shop()
 		var dropoff := _random_house()
